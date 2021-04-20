@@ -8,6 +8,7 @@ import {
   InputGroup,
   Navbar,
 } from 'react-bootstrap';
+import { FaSearch } from 'react-icons/fa';
 
 export default function Header(): JSX.Element {
   return (
@@ -24,8 +25,12 @@ export default function Header(): JSX.Element {
                 placeholder="Qual Pokémon você está procurando?"
               ></FormControl>
               <InputGroup.Append>
-                <Button variant="secondary-custom" type="submit">
-                  Search
+                <Button
+                  variant="secondary-custom"
+                  style={{ lineHeight: 0 }}
+                  type="submit"
+                >
+                  <FaSearch />
                 </Button>
               </InputGroup.Append>
             </InputGroup>
