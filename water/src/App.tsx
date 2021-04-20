@@ -1,7 +1,13 @@
 import React from 'react';
-
-function App() {
-  return <h1>App Component</h1>;
+import Header from './components/Header/Header';
+import GlobalStyles from './styles/globalStyles';
+function App(): JSX.Element {
+  return (
+    <>
+      <GlobalStyles />
+      <Header />
+    </>
+  );
 }
 
 export default App;
