@@ -19,3 +19,7 @@ export const PokemonDetails = styled.div`
   flex-direction: column;
   background-color: ${rgba(colors.primaryLightColor, 0.2)};
 `;
+
+export const Price = styled.h5`
+  font-weight: bold;
+`;

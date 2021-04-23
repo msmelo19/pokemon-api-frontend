@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Image } from 'react-bootstrap';
 import { FiShoppingCart } from 'react-icons/fi';
 import { requestPokemon } from '../../../services/axios';
-import { DivItem, PokemonDetails } from './styled';
+import { DivItem, PokemonDetails, Price } from './styled';
 import * as actions from '../../../store/modules/CartItems/action';
 import { setRealFormat } from '../../../utils/realFormat';
 
@@ -40,7 +40,7 @@ export default function Item(props: IItemProps): JSX.Element {
       <Image src={image} fluid />
       <PokemonDetails>
         <p>{`${name.charAt(0).toUpperCase()}${name.slice(1)}`}</p>
-        <h5 style={{ fontWeight: 'bold' }}>{setRealFormat(price)}</h5>
+        <Price>{setRealFormat(price)}</Price>
       </PokemonDetails>
       <Button variant="secondary-custom" onClick={handleAddToCart}>
         <FiShoppingCart />
