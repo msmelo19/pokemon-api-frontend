@@ -1,12 +1,16 @@
 import React from 'react';
-import Header from './components/Header/Header';
+import { Provider } from 'react-redux';
+import store from './store';
+import Header from './components/Header';
+import CatalogPage from './components/CatalogPage';
 import GlobalStyles from './styles/globalStyles';
 function App(): JSX.Element {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyles />
       <Header />
-    </>
+      <CatalogPage />
+    </Provider>
   );
 }
 

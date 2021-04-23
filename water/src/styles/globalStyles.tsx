@@ -11,6 +11,7 @@ export default createGlobalStyle`
     }
 
   body {
+    background-color: ${colors.grayLighterColor};
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 32px;
   }
@@ -41,23 +42,33 @@ export default createGlobalStyle`
 
   .btn-secondary-custom {
     background-color: ${colors.secondaryColor};
-    border-color: ${colors.secondaryColor};
     color: ${colors.secondaryTextColor};
+    border-radius: 0;
+    border-color: ${colors.secondaryColor};
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
     &:hover {
-      background-color: ${colors.secondaryLightColor};
-      border-color: ${colors.secondaryLightColor};
-      color: ${colors.secondaryTextColor};
-    }
-
-    &:active {
       background-color: ${colors.secondaryDarkColor};
       border-color: ${colors.secondaryDarkColor};
       color: ${colors.secondaryTextColor};
     }
 
     &:focus {
+      background-color: ${colors.secondaryColor};
+      border-color: ${colors.secondaryColor};
       box-shadow: none;
+      color: ${colors.secondaryTextColor};
+    }
+
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus {
+      background-color: ${colors.secondaryDarkColor};
+      border-color: ${colors.secondaryDarkColor};
+      box-shadow: 0 0 0 0.2rem ${rgba(colors.secondaryColor, 0.4)};
+      color: ${colors.secondaryTextColor};
     }
   }
 `;
