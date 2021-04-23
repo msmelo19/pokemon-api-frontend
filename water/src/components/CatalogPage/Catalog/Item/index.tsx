@@ -32,7 +32,7 @@ export default function Item(props: IItemProps): JSX.Element {
   }, []);
 
   const handleAddToCart = () => {
-    dispatch(actions.addItemRequest({ image, name, price }));
+    dispatch(actions.addItemCart({ image, name, price }));
   };
 
   return (

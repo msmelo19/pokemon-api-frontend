@@ -12,7 +12,7 @@ const initialState: IState = {
 
 export default function (state = initialState, action: AnyAction) {
   switch (action.type) {
-    case types.ADD_ITEM_REQUEST: {
+    case types.ADD_ITEM_CART: {
       const newState = { ...state };
       const pokemon: ICartItem = {
         image: action.payload.image,
