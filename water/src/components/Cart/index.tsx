@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import RootState from '../../store/modules/rootTypes';
 import ICartItem from '../../store/modules/CartItems/interface/ICartItem';
+import { setRealFormat } from '../../utils/realFormat';
 import {
   ShoppingCart,
   ParagraphCenter,
@@ -45,12 +46,19 @@ export default function Cart(): JSX.Element {
                   }}
                   key={id}
                 >
-                  <img src={pokemon.image}></img>
-                  <p>
-                    {pokemon.name.charAt(0).toUpperCase() +
-                      pokemon.name.slice(1)}
-                  </p>
-                  <p>{pokemon.price.toFixed(2)}</p>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <img src={pokemon.image}></img>
+                    <p>
+                      {pokemon.name.charAt(0).toUpperCase() +
+                        pokemon.name.slice(1)}
+                    </p>
+                  </div>
+                  <p>{setRealFormat(pokemon.price)}</p>
                 </div>
               );
             })}
@@ -66,7 +74,7 @@ export default function Cart(): JSX.Element {
         <hr />
         <TotalPriceArea>
           <h5>Total</h5>
-          <p>{`R$${totalPrice.toFixed(2)}`}</p>
+          <p>{setRealFormat(totalPrice)}</p>
         </TotalPriceArea>
       </ShoppingCart>
       <BtnCheckout variant="secondary-custom">Finalizar compra</BtnCheckout>

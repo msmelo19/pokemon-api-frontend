@@ -5,6 +5,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { requestPokemon } from '../../../services/axios';
 import { DivItem, PokemonDetails } from './styled';
 import * as actions from '../../../store/modules/CartItems/action';
+import { setRealFormat } from '../../../utils/realFormat';
 
 interface IItemProps {
   name: string;
@@ -39,10 +40,7 @@ export default function Item(props: IItemProps): JSX.Element {
       <Image src={image} fluid />
       <PokemonDetails>
         <p>{`${name.charAt(0).toUpperCase()}${name.slice(1)}`}</p>
-        <h5 style={{ fontWeight: 'bold' }}>{`R$${price
-          .toFixed(2)
-          .toString()
-          .replace('.', ',')}`}</h5>
+        <h5 style={{ fontWeight: 'bold' }}>{setRealFormat(price)}</h5>
       </PokemonDetails>
       <Button variant="secondary-custom" onClick={handleAddToCart}>
         <FiShoppingCart />
