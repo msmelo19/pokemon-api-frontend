@@ -71,4 +71,23 @@ export default createGlobalStyle`
       color: ${colors.secondaryTextColor};
     }
   }
+
+  .page-link {
+    color: ${colors.secondaryColor};
+
+    &:hover {
+      color: ${colors.primaryColor};
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .page-item.active {
+    .page-link {
+      background-color: ${colors.secondaryColor};
+      border-color: ${colors.secondaryColor};
+    }
+  }
 `;

@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Image } from 'react-bootstrap';
 import { FiShoppingCart } from 'react-icons/fi';
-import { requestPokemon } from '../../../services/axios';
+import { requestPokemon } from '../../../../services/axios';
 import { DivItem, PokemonDetails, Price } from './styled';
-import * as actions from '../../../store/modules/CartItems/action';
-import { setRealFormat } from '../../../utils/realFormat';
+import * as actions from '../../../../store/modules/CartItems/action';
+import { setRealFormat } from '../../../../utils/realFormat';
 
 interface IItemProps {
   name: string;

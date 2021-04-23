@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import * as colors from '../../../config/colors';
+import * as colors from '../../../../config/colors';
 
 export const DivItem = styled.div`
   width: 144px;

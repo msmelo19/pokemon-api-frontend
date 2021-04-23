@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import RootState from '../../store/modules/rootTypes';
-import ICartItem from '../../store/modules/CartItems/interface/ICartItem';
-import { setRealFormat } from '../../utils/realFormat';
+import RootState from '../../../store/modules/rootTypes';
+import ICartItem from '../../../store/modules/CartItems/interface/ICartItem';
+import { setRealFormat } from '../../../utils/realFormat';
 import {
   ShoppingCart,
   ParagraphCenter,

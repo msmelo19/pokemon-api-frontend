@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import * as colors from '../../config/colors';
+import * as colors from '../../../config/colors';
 
 export const ShoppingCart = styled.div`
   padding: 32px 16px 0;
