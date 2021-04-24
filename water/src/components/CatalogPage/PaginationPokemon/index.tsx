@@ -16,7 +16,7 @@ export default function PaginationPokemon(props: IProps): JSX.Element {
 
   return (
     <ContainerBackground>
-      <Pagination>
+      <Pagination className="flex-wrap">
         {page > 1 ? (
           <Pagination.Prev onClick={() => setPage(page - 1)} />
         ) : (
