@@ -23,6 +23,13 @@ export default function (state = initialState, action: AnyAction) {
       return newState;
     }
 
+    case types.DEL_ITEM_CART: {
+      const { pokemon } = state;
+      const id = action.payload.id;
+      pokemon.splice(id, 1);
+      return { pokemon };
+    }
+
     default:
       return state;
   }

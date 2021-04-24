@@ -15,3 +15,8 @@ export const grayLighterColor = '#f8fafa';
 export const grayLightColor = '#ebeeef';
 export const grayColor = '#dce2e3';
 export const grayDarkColor = '#ccd4d7';
+
+// Danger colors
+export const dangerLightColor = '#c96d4f';
+export const dangerColor = '#c35d3c';
+export const dangerDarkColor = '#af5336';

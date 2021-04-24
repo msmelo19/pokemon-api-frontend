@@ -9,9 +9,14 @@ import {
   NoItemsMsg,
   TotalPriceArea,
   BtnCheckout,
+  BtnDelete,
 } from './styled';
+import { TiDelete } from 'react-icons/ti';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../../store/modules/CartItems/action';
 
 export default function Cart(): JSX.Element {
+  const dispatch = useDispatch();
   const [items, setItems] = React.useState<Array<ICartItem>>([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
@@ -28,6 +33,10 @@ export default function Cart(): JSX.Element {
     }, 0);
     setTotalPrice(total);
   }, [items.length]);
+
+  const handleClick = (id: number) => {
+    dispatch(actions.delItemCart({ id }));
+  };
 
   return (
     <>
@@ -52,6 +61,9 @@ export default function Cart(): JSX.Element {
                       alignItems: 'center',
                     }}
                   >
+                    <BtnDelete variant="link" onClick={() => handleClick(id)}>
+                      <TiDelete size={24} />
+                    </BtnDelete>
                     <img src={pokemon.image}></img>
                     <p>
                       {pokemon.name.charAt(0).toUpperCase() +

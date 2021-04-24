@@ -29,3 +29,21 @@ export const BtnCheckout = styled(Button)`
   justify-content: center;
   width: 100%;
 `;
+
+export const BtnDelete = styled(Button)`
+  &.btn-link {
+    color: ${colors.dangerColor};
+
+    &:hover {
+      color: ${colors.dangerDarkColor};
+    }
+
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus,
+    &:focus {
+      box-shadow: none;
+      color: ${colors.dangerColor};
+    }
+  }
+`;
