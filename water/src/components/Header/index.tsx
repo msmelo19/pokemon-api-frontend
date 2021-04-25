@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   Button,
   Col,
@@ -10,19 +11,41 @@ import {
 } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
-export default function Header(): JSX.Element {
+function Header(props: RouteComponentProps): JSX.Element {
+  const { history } = props;
+  const [pokemon, setPokemon] = React.useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    history.push({
+      pathname: '/',
+      state: {
+        searchedPokemon: pokemon,
+      },
+    });
+  };
   return (
     <Navbar expand="md">
       <Container>
         <Col md>
-          <Navbar.Brand>WaterStore</Navbar.Brand>
+          <Link
+            to={{
+              pathname: '/',
+              state: { page: 1 },
+            }}
+          >
+            <Navbar.Brand>WaterStore</Navbar.Brand>
+          </Link>
         </Col>
         <Col md>
-          <Form className="ml-auto">
+          <Form className="ml-auto" onSubmit={(e) => handleSearch(e)}>
             <InputGroup>
               <FormControl
                 type="search"
                 placeholder="Qual Pokémon você está procurando?"
+                value={pokemon}
+                onChange={(e) => setPokemon(e.target.value)}
               ></FormControl>
               <InputGroup.Append>
                 <Button
@@ -40,3 +63,5 @@ export default function Header(): JSX.Element {
     </Navbar>
   );
 }
+
+export default withRouter(Header);

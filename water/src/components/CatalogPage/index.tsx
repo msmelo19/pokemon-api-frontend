@@ -1,32 +1,55 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { requestType } from '../../services/axios';
+import { get } from 'lodash';
 import Cart from './Cart';
 import Catalog from './Catalog';
 import { ContainerCatalog } from './styled';
 import PaginationPokemon from './PaginationPokemon';
+import paginate from '../../utils/paginate';
 
-export default function CatalogPage(): JSX.Element {
+export default function CatalogPage(props: any): JSX.Element {
+  const { timestamp } = props;
+  const searchedPokemon: string = get(props, 'location.state.searchedPokemon');
+  const pageProps = get(props, 'location.state.page', 1);
+
   const [page, setPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(1);
   const [pokemonCatalog, setPokemonCatalog] = React.useState([]);
 
-  const getPokemon = async () => {
-    const numOfPokemonShown = 10;
-    const { data } = await requestType.get('/');
-    const { pokemon } = data;
-
-    const startIndex = (page - 1) * numOfPokemonShown;
-    const endIndex = page * numOfPokemonShown;
-    setTotalPages(Math.ceil(pokemon.length / numOfPokemonShown));
-
-    const pokemonResult = pokemon.slice(startIndex, endIndex);
-    setPokemonCatalog(pokemonResult);
-  };
+  React.useEffect(() => {
+    setPage(pageProps);
+  }, [timestamp]);
 
   React.useEffect(() => {
+    const getPokemon = async () => {
+      const numOfPokemonShown = 10;
+      const { data } = await requestType.get('/');
+      const { pokemon } = data;
+
+      if (searchedPokemon) {
+        const filteredPokemon = pokemon.filter((item: any) => {
+          const name = get(item, 'pokemon.name');
+          if (searchedPokemon.toLowerCase() === name) {
+            return item;
+          }
+        });
+        setTotalPages(
+          paginate(filteredPokemon, page, numOfPokemonShown).totalPages,
+        );
+
+        setPokemonCatalog(
+          paginate(filteredPokemon, page, numOfPokemonShown).array,
+        );
+      } else {
+        setTotalPages(paginate(pokemon, page, numOfPokemonShown).totalPages);
+
+        setPokemonCatalog(paginate(pokemon, page, numOfPokemonShown).array);
+      }
+    };
+
     getPokemon();
-  }, [page]);
+  }, [page, searchedPokemon]);
 
   return (
     <ContainerCatalog fluid>
