@@ -30,6 +30,17 @@ export const BtnCheckout = styled(Button)`
   width: 100%;
 `;
 
+export const ContainerItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ImageAndName = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const BtnDelete = styled(Button)`
   &.btn-link {
     color: ${colors.dangerColor};

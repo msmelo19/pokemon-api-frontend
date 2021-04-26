@@ -6,6 +6,7 @@ import { requestPokemon } from '../../../../services/axios';
 import { DivItem, PokemonDetails, Price } from './styled';
 import * as actions from '../../../../store/modules/CartItems/action';
 import { setRealFormat } from '../../../../utils/realFormat';
+import capitalize from '../../../../utils/capitalize';
 
 interface IItemProps {
   name: string;
@@ -39,7 +40,7 @@ export default function Item(props: IItemProps): JSX.Element {
     <DivItem>
       <Image src={image} fluid />
       <PokemonDetails>
-        <p>{`${name.charAt(0).toUpperCase()}${name.slice(1)}`}</p>
+        <p>{capitalize(name)}</p>
         <Price>{setRealFormat(price)}</Price>
       </PokemonDetails>
       <Button variant="secondary-custom" onClick={handleAddToCart}>

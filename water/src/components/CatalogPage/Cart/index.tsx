@@ -9,11 +9,15 @@ import {
   NoItemsMsg,
   TotalPriceArea,
   BtnCheckout,
+  ContainerItem,
+  ImageAndName,
   BtnDelete,
 } from './styled';
 import { TiDelete } from 'react-icons/ti';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../../store/modules/CartItems/action';
+import capitalize from '../../../utils/capitalize';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 export default function Cart(): JSX.Element {
   const dispatch = useDispatch();
@@ -47,30 +51,29 @@ export default function Cart(): JSX.Element {
           <div>
             {items.map((pokemon, id) => {
               return (
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                  key={id}
-                >
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <BtnDelete variant="link" onClick={() => handleClick(id)}>
-                      <TiDelete size={24} />
-                    </BtnDelete>
-                    <img src={pokemon.image}></img>
-                    <p>
-                      {pokemon.name.charAt(0).toUpperCase() +
-                        pokemon.name.slice(1)}
-                    </p>
-                  </div>
-                  <p>{setRealFormat(pokemon.price)}</p>
+                <div key={id}>
+                  <ContainerItem>
+                    <ImageAndName>
+                      <OverlayTrigger
+                        placement={'left'}
+                        overlay={
+                          <Tooltip id="del-item">
+                            Remover {capitalize(pokemon.name)} do carrinho
+                          </Tooltip>
+                        }
+                      >
+                        <BtnDelete
+                          variant="link"
+                          onClick={() => handleClick(id)}
+                        >
+                          <TiDelete size={24} />
+                        </BtnDelete>
+                      </OverlayTrigger>
+                      <img src={pokemon.image}></img>
+                      <p>{capitalize(pokemon.name)}</p>
+                    </ImageAndName>
+                    <p>{setRealFormat(pokemon.price)}</p>
+                  </ContainerItem>
                 </div>
               );
             })}
